@@ -131,3 +131,11 @@ void fifo_queue_free(struct fifo_queue *fifo)
   // Fortran is responsible for freeing each one of the pointers in the queue.
   free(fifo);
 }
+
+/**
+ * Get the number of elements in the fifo queue.
+ */
+size_t fifo_queue_get_count(struct fifo_queue *fifo)
+{
+  return fifo->count;
+}
