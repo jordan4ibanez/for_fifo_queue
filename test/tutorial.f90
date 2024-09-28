@@ -1,4 +1,4 @@
-program prototyping
+program tutorial
   use :: fifo_queue
   use, intrinsic :: iso_c_binding
   implicit none
@@ -46,4 +46,4 @@ program prototyping
   call queue%destroy()
 
 
-end program prototyping
+end program tutorial
