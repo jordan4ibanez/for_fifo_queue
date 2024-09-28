@@ -82,4 +82,33 @@ void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
 
   // Increment count.
   fifo->count++;
+/**
+ * Pop the front of the queue.
+ *
+ * Will return NULL if empty.
+ */
+char *fifo_queue_pop(struct fifo_queue *fifo)
+{
+  // Well, first of all, if this thing is empty, return NULL.
+  if (!fifo->count)
+  {
+    return NULL;
+  }
+
+  // This will get getting returned.
+  char *output = NULL;
+
+  // The output will become the head data.
+  // The head will now be shifted forward.
+  output = fifo->head;
+  fifo->head = ((header *)(fifo->head + fifo->fortran_data_size));
+
+  // If this was pointing to NULL, we must nullify the tail.
+  if (!fifo->head)
+  {
+    fifo->tail = NULL;
+  }
+
+  // Count down.
+  fifo->count--;
 }
