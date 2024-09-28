@@ -11,6 +11,8 @@ typedef struct fifo_queue fifo_queue;
  *
  * The header actually comes after the fortran data. [ fortran data | header ]
  *
+ * This is designed like this so the deallocate call in fortran will also free the header.
+ *
  * I call it header because that's what I'm used to.
  */
 struct header
@@ -53,6 +55,8 @@ char *new_fifo_queue(size_t fortran_data_width)
  */
 void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
 {
+  // Do some abstract memory management.
+  // Layout: [ fortran data | header ]
   char *heap_fortran_data = malloc(fifo->element_size);
   memcpy(heap_fortran_data, fortran_data, fifo->fortran_data_size);
   ((header *)(heap_fortran_data + fifo->fortran_data_size))->next = NULL;
