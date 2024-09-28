@@ -19,6 +19,10 @@ program tutorial
   queue = new_fifo_queue(sizeof(10))
 
   !* Let us push 3.2 GB of integers into it.
+  !? NOTICE:
+  !* I am pushing STACK variables into it. It uses memcpy under the hood.
+  !* I highly recommend you push stack variables into the queue for performance.
+  !* The type you push in can contain Fortran pointers.
   do i = 1,100000000
     call queue%push(i)
   end do
