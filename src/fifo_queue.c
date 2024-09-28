@@ -117,3 +117,12 @@ char *fifo_queue_pop(struct fifo_queue *fifo)
   // Count down.
   fifo->count--;
 }
+
+/**
+ * Free the underlying queue memory.
+ */
+void fifo_queue_free(struct fifo_queue *fifo)
+{
+  // Fortran is responsible for freeing each one of the pointers in the queue.
+  free(fifo);
+}
