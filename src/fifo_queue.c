@@ -110,6 +110,9 @@ char *fifo_queue_pop(struct fifo_queue *fifo)
   // The output will become the head data.
   // The head will now be shifted forward.
   output = fifo->head;
+
+  printf("c out: %i\n", *(int32_t *)output);
+
   fifo->head = ((header *)(fifo->head + fifo->fortran_data_size))->next;
 
   // If this was pointing to NULL, we must nullify the tail.
