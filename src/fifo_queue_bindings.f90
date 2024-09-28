@@ -17,6 +17,33 @@ module fifo_queue
     end function internal_new_fifo_queue
 
 
+    subroutine internal_fifo_queue_push(fifo, fortran_data) bind(c, name = "fifo_queue_push")
+      use, intrinsic :: iso_c_binding
+      implicit none
+
+      type(c_ptr), intent(in), value :: fifo
+      type(c_ptr), intent(in), value :: fortran_data
+    end subroutine internal_fifo_queue_push
+
+
+    function internal_fifo_queue_pop(fifo, fortran_data) result(char_ptr) bind(c, name = "fifo_queue_pop")
+      use, intrinsic :: iso_c_binding
+      implicit none
+
+      type(c_ptr), intent(in), value :: fifo
+      type(c_ptr), intent(in), value :: fortran_data
+      type(c_ptr) :: char_ptr
+    end function internal_fifo_queue_pop
+
+
+    subroutine internal_fifo_queue_free(fifo) bind(c, name = "fifo_queue_free")
+      use, intrinsic :: iso_c_binding
+      implicit none
+
+      type(c_ptr), intent(in), value :: fifo
+    end subroutine internal_fifo_queue_free
+
+
   end interface
 
 
