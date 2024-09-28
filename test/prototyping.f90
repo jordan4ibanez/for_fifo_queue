@@ -10,7 +10,7 @@ program prototyping
 
   queue = new_fifo_queue(sizeof(10))
 
-  do i = 1,3
+  do i = 1,10000
     call queue%push(i)
   end do
 
