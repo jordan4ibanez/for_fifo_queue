@@ -61,7 +61,7 @@ void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
   memcpy(heap_fortran_data, fortran_data, fifo->fortran_data_size);
   ((header *)(heap_fortran_data + fifo->fortran_data_size))->next = NULL;
 
-  // If the head is null, this is the new head.
+  // If the head is NULL, this is the new head.
   if (!fifo->head)
   {
     fifo->head = heap_fortran_data;
@@ -82,6 +82,8 @@ void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
 
   // Increment count.
   fifo->count++;
+}
+
 /**
  * Pop the front of the queue.
  *
