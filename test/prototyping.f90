@@ -16,7 +16,7 @@ program prototyping
 
   do while(queue%pop(raw_c_ptr))
     call c_f_pointer(raw_c_ptr, gotten)
-    ! print*,gotten
+    print*,gotten
   end do
 
 
