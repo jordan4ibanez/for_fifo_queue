@@ -38,7 +38,7 @@ struct fifo_queue
 /**
  * Create a new fifo queue.
  */
-char *new_fifo_queue(size_t fortran_data_width)
+char *new_fifo_queue(size_t fortran_data_size)
 {
   char *raw_memory = malloc(sizeof(fifo_queue));
 
@@ -48,8 +48,8 @@ char *new_fifo_queue(size_t fortran_data_width)
 
   fifo->head = NULL;
   fifo->tail = NULL;
-  fifo->element_size = fortran_data_width + HEADER_SIZE;
-  fifo->fortran_data_size = fortran_data_width;
+  fifo->element_size = fortran_data_size + HEADER_SIZE;
+  fifo->fortran_data_size = fortran_data_size;
   fifo->count = 0;
 }
 
