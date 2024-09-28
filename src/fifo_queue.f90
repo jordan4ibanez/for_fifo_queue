@@ -21,6 +21,7 @@ module fifo_queue
     procedure :: pop => fifo_queue_pop
     procedure :: destroy => fifo_queue_destroy
     procedure :: count => fifo_queue_get_count
+    procedure :: is_empty => fifo_queue_is_empty
   end type fifo
 
 
@@ -86,6 +87,17 @@ contains
 
     count = internal_fifo_queue_get_count(this%data)
   end function fifo_queue_get_count
+
+
+  !* Check if the fifo queue is empty.
+  function fifo_queue_is_empty(this) result(is_empty)
+    implicit none
+
+    class(fifo), intent(in) :: this
+    logical(c_bool) :: is_empty
+
+    is_empty = internal_fifo_queue_get_count(this%data) == 0
+  end function fifo_queue_is_empty
 
 
 end module fifo_queue
