@@ -6,6 +6,7 @@ module fifo_queue
 
   private
 
+
   public :: fifo
   public :: new_fifo_queue
 
@@ -22,6 +23,7 @@ module fifo_queue
 
 
 contains
+
 
   function new_fifo_queue(data_size) result(f)
     implicit none
@@ -71,10 +73,6 @@ contains
 
     call internal_fifo_queue_free(this%data)
   end subroutine fifo_queue_destroy
-
-
-
-
 
 
 end module fifo_queue
