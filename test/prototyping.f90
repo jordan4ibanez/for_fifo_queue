@@ -8,19 +8,21 @@ program prototyping
   type(c_ptr) :: raw_c_ptr
   integer(c_int), pointer :: gotten
 
-  queue = new_fifo_queue(sizeof(10))
+  do
+    queue = new_fifo_queue(sizeof(10))
 
-  do i = 1,10000
-    call queue%push(i)
+    do i = 1,10000
+      call queue%push(i)
+    end do
+
+    do while(queue%pop(raw_c_ptr))
+      call c_f_pointer(raw_c_ptr, gotten)
+      ! print*,gotten
+      deallocate(gotten)
+    end do
+
+    call queue%destroy()
   end do
-
-  do while(queue%pop(raw_c_ptr))
-    call c_f_pointer(raw_c_ptr, gotten)
-    print*,gotten
-    deallocate(gotten)
-  end do
-
-  call queue%destroy()
 
 
 end program prototyping
