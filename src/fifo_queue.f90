@@ -10,6 +10,7 @@ module fifo_queue
   public :: fifo
   public :: new_fifo_queue
 
+
   !* Keep in mind:
   !* This is using raw pointers, make sure you free the given pointer upon pop.
   type :: fifo
