@@ -2,6 +2,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include <string.h>
+#include <assert.h>
 
 typedef struct header header;
 typedef struct fifo_queue fifo_queue;
@@ -40,6 +41,8 @@ struct fifo_queue
 char *new_fifo_queue(size_t fortran_data_width)
 {
   char *raw_memory = malloc(sizeof(fifo_queue));
+
+  assert(raw_memory);
 
   fifo_queue *fifo = (fifo_queue *)raw_memory;
 
