@@ -6,7 +6,11 @@ typedef struct header header;
 typedef struct fifo_queue fifo_queue;
 
 /**
- * Simple header to allow quickly jumping over the Fortran data.
+ * Simple header to allow quickly jumping over the Fortran data to get the next memory address.
+ *
+ * The header actually comes after the fortran data. [ fortran data | header ]
+ *
+ * I call it header because that's what I'm used to.
  */
 struct header
 {
