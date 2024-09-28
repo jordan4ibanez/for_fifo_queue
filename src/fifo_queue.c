@@ -66,7 +66,7 @@ void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
 
   ((header *)(heap_fortran_data + fifo->fortran_data_size))->next = NULL;
 
-  printf("c: %i\n", *(int32_t *)fortran_data);
+  printf("c: %i\n", *(int32_t *)heap_fortran_data);
 
   // If the head is NULL, this is the new head.
   if (!fifo->head)
