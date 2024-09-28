@@ -61,8 +61,12 @@ void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
   // Do some abstract memory management.
   // Layout: [ fortran data | header ]
   char *heap_fortran_data = malloc(fifo->element_size);
+
   memcpy(heap_fortran_data, fortran_data, fifo->fortran_data_size);
+
   ((header *)(heap_fortran_data + fifo->fortran_data_size))->next = NULL;
+
+  printf("c: %i\n", *(int32_t *)fortran_data);
 
   // If the head is NULL, this is the new head.
   if (!fifo->head)
