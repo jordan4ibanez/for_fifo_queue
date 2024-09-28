@@ -1,8 +1,5 @@
-module fifo_queue
+module fifo_queue_bindings
   implicit none
-
-
-  private
 
 
   interface
@@ -26,12 +23,11 @@ module fifo_queue
     end subroutine internal_fifo_queue_push
 
 
-    function internal_fifo_queue_pop(fifo, fortran_data) result(char_ptr) bind(c, name = "fifo_queue_pop")
+    function internal_fifo_queue_pop(fifo) result(char_ptr) bind(c, name = "fifo_queue_pop")
       use, intrinsic :: iso_c_binding
       implicit none
 
       type(c_ptr), intent(in), value :: fifo
-      type(c_ptr), intent(in), value :: fortran_data
       type(c_ptr) :: char_ptr
     end function internal_fifo_queue_pop
 
@@ -47,4 +43,4 @@ module fifo_queue
   end interface
 
 
-end module fifo_queue
+end module fifo_queue_bindings
