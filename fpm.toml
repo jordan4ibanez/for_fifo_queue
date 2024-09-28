@@ -1,6 +1,6 @@
 name = "for_fifo_queue"
 version = "0.1.0"
-license = "license"
+license = "MIT"
 author = "jordan4ibanez"
 maintainer = "jordan4ibanez"
 copyright = "Copyright 2024, jordan4ibanez"
