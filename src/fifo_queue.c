@@ -66,8 +66,6 @@ void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
 
   ((header *)(heap_fortran_data + fifo->fortran_data_size))->next = NULL;
 
-  printf("c: %i\n", *(int32_t *)heap_fortran_data);
-
   // If the head is NULL, this is the new head.
   if (!fifo->head)
   {
@@ -118,8 +116,6 @@ char *fifo_queue_pop(struct fifo_queue *fifo)
   {
     fifo->tail = NULL;
   }
-
-  printf("c out: %i\n", *(int32_t *)output);
 
   // Count down.
   fifo->count--;
