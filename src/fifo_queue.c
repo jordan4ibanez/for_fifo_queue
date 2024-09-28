@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct header header;
 typedef struct fifo_queue fifo_queue;
@@ -45,4 +46,36 @@ char *new_fifo_queue(size_t fortran_data_width)
   fifo->element_size = fortran_data_width + HEADER_SIZE;
   fifo->fortran_data_size = fortran_data_width;
   fifo->count = 0;
+}
+
+/**
+ * Push data to the back of the queue.
+ */
+void fifo_queue_push(struct fifo_queue *fifo, char *fortran_data)
+{
+  char *heap_fortran_data = malloc(fifo->element_size);
+  memcpy(heap_fortran_data, fortran_data, fifo->fortran_data_size);
+  ((header *)(heap_fortran_data + fifo->fortran_data_size))->next = NULL;
+
+  // If the head is null, this is the new head.
+  if (!fifo->head)
+  {
+    fifo->head = heap_fortran_data;
+  }
+
+  // If we have a tail, it now points to the new element.
+  // The new node then becomes the tail.
+  if (fifo->tail)
+  {
+    ((header *)(fifo->tail + fifo->fortran_data_size))->next = heap_fortran_data;
+    fifo->tail = heap_fortran_data;
+  }
+  else
+  {
+    // If we do not have a tail, this is now the tail.
+    fifo->tail = heap_fortran_data;
+  }
+
+  // Increment count.
+  fifo->count++;
 }
