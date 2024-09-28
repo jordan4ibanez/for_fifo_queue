@@ -20,6 +20,7 @@ module fifo_queue
     procedure :: push => fifo_queue_push
     procedure :: pop => fifo_queue_pop
     procedure :: destroy => fifo_queue_destroy
+    procedure :: count => fifo_queue_get_count
   end type fifo
 
 
@@ -74,6 +75,17 @@ contains
 
     call internal_fifo_queue_free(this%data)
   end subroutine fifo_queue_destroy
+
+
+  !* Get the number of elements in the fifo queue.
+  function fifo_queue_get_count(this) result(count)
+    implicit none
+
+    class(fifo), intent(in) :: this
+    integer(c_size_t) :: count
+
+    count = internal_fifo_queue_get_count(this%data)
+  end function fifo_queue_get_count
 
 
 end module fifo_queue
