@@ -1,7 +1,11 @@
 # for_fifo_queue
 A dense linked fifo queue.
 
+-----
+
 ### Dense?
+
+-----
 
 Why is it dense? It allows unlimited polymorphism in the queue without using additional indirection.
 
@@ -9,7 +13,11 @@ When you pop, you are getting what you put in. The memory address it was assigne
 
 If you are having a hard time understanding this, please see the tutorial.
 
+-----
+
 ### Why?
+
+-----
 
 Because this allows higher performance without having to write multiple different kinds of queues in Fortran.
 
@@ -17,7 +25,26 @@ This also has 1 less layer of indirection with pure polymorphism because in Fort
 
 This also allows you to push a re-used stack variable into the queue without having to fuss with reallocate over and over with basic (non-pointer containing) derived types.
 
+-----
+
+If you like what I do, and would like to support me: [My Patreon](https://www.patreon.com/jordan4ibanez)
+
+-----
+
+### Add to your project:
+
+-----
+
+```toml
+[dependencies]
+for_fifo_queue = { git = "https://github.com/jordan4ibanez/for_fifo_queue" }
+```
+
+-----
+
 ### Tutorial:
+
+-----
 
 You can run this tutorial with: ``make test``
 
