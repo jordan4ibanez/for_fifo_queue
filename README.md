@@ -19,6 +19,8 @@ This also allows you to push a re-used stack variable into the queue without hav
 
 ### Tutorial:
 
+You can run this tutorial with: ``make test``
+
 ```fortran
 program tutorial
   use :: fifo_queue
@@ -57,7 +59,7 @@ program tutorial
     !* Enable this if you want to be here all day.
     ! print*,gotten
     !! Very important:
-    !* You must deallocate the transfered pointer or else you'll have a memory leak.
+    !* You must deallocate the transfered pointer or else you will have a memory leak.
     !* If your type contains Fortran pointers, deallocate them before deallocating
     !* the transfered pointer.
     deallocate(gotten)
@@ -67,8 +69,8 @@ program tutorial
   !* Now, we are done with it.
   !* This will free the underlying memory.
   !? There is NO GC on fifo queue.
-  !? Simply pop it until it's empty with your deallocation strategy on
-  !? whatever type you're using it for.
+  !? Simply pop it until it is empty with your deallocation strategy on
+  !? whatever type you are using it for.
   call queue%destroy()
 
 
