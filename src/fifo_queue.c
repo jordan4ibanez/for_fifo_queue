@@ -119,6 +119,8 @@ char *fifo_queue_pop(struct fifo_queue *fifo)
 
   // Count down.
   fifo->count--;
+
+  return output;
 }
 
 /**
