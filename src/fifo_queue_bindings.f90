@@ -40,6 +40,15 @@ module fifo_queue_bindings
     end subroutine internal_fifo_queue_free
 
 
+    function internal_fifo_queue_get_count(fifo) result(count) bind(c, name = "fifo_queue_get_count")
+      use, intrinsic :: iso_c_binding
+      implicit none
+
+      type(c_ptr), intent(in), value :: fifo
+      integer(c_size_t) :: count
+    end function internal_fifo_queue_get_count
+
+
   end interface
 
 
