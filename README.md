@@ -78,6 +78,9 @@ program tutorial
     call queue%push(i)
   end do
 
+  !* A lot of items.
+  print*,queue%count()
+
   !* Now, we will pop it until empty.
   !? Important note: You are getting actual pointers from malloc in C.
   do while(queue%pop(raw_c_ptr))
@@ -91,6 +94,10 @@ program tutorial
     !* the transfered pointer.
     deallocate(gotten)
   end do
+
+  !* It is empty.
+  print*,queue%count()
+  print*,queue%is_empty()
 
   !! Very important:
   !* Now, we are done with it.
