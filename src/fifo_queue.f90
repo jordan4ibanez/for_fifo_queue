@@ -33,13 +33,17 @@ contains
   end function new_fifo_queue
 
 
-  subroutine fifo_queue_push(this, raw_c_ptr)
+  !* I recommend you use stack variables.
+  subroutine fifo_queue_push(this, generic)
     implicit none
 
     class(fifo), intent(in) :: this
-    type(c_ptr), intent(in) :: raw_c_ptr
+    class(*), intent(in), target :: generic
+    type(c_ptr) :: black_magic
 
-    call internal_fifo_queue_push(this%data, raw_c_ptr)
+    black_magic = transfer(loc(generic), black_magic)
+
+    call internal_fifo_queue_push(this%data, black_magic)
   end subroutine fifo_queue_push
 
 
