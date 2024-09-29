@@ -51,6 +51,8 @@ char *new_fifo_queue(size_t fortran_data_size)
   fifo->element_size = fortran_data_size + HEADER_SIZE;
   fifo->fortran_data_size = fortran_data_size;
   fifo->count = 0;
+
+  return raw_memory;
 }
 
 /**
